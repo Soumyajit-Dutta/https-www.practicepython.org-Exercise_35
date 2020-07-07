@@ -1,0 +1,20 @@
+import json
+import datetime
+from collections import Counter
+
+def reading_json (): 
+    with open("birthdayfile.json","r") as birthday: #birthdayfile.json is json file name
+        birthday_file = json.load(birthday)
+    getting_only_values = list(birthday_file.values())
+    return (getting_only_values)
+
+def month_counter ():
+
+    montha = []
+    
+    for element in reading_json():
+        montha.append(datetime.datetime.strptime(element, "%m/%d/%Y").strftime("%B"))
+        
+    print(Counter(montha))
+
+month_counter()
